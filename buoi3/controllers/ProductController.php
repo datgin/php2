@@ -53,7 +53,7 @@ class ProductController
         $products = $product->getOneProduct($_GET['id']);
         $category = new categorys();
         $categorys  = $category->getCategory();
-        
+
 
         // $category = $createCategory->getCategory();
         if (isset($_POST['edit']) && $_POST['edit']) {
@@ -67,6 +67,7 @@ class ProductController
             } else {
                 $img = time() . "_" . $_FILES['img']['name'];
                 move_uploaded_file($_FILES['img']['tmp_name'], "upload/$img");
+                unlink("upload/" . $products['img']);
             }
 
             if (empty($err)) {
